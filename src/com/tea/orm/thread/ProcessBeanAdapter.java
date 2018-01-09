@@ -10,13 +10,13 @@ public final class ProcessBeanAdapter {
 		promptDialog = new PromptDialog();
 	}
 	
-	public <T, U> void addBeanAdapter(final BeanAdapter adapter) {
+	public <T> void addBeanAdapter(final BeanAdapter<T> adapter) {
 		new Thread(new Runnable() {
 
 			public void run() {
 				try {
-					U[][] complex = adapter.getComplex();
-					U[] simple = adapter.getSimple();
+					T[][] complex = adapter.getComplex();
+					T[] simple = adapter.getSimple();
 					List<T> lists = adapter.getLists();
 					promptDialog.dispose();
 					if(complex != null)
