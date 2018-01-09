@@ -2,7 +2,7 @@ package com.tea.orm.thread;
 
 import java.util.List;
 
-public final class BeanAdapter {
+public class BeanAdapter {
 	
 	public <U> U[][] getComplex() { return null; }
 	
