@@ -2,19 +2,19 @@ package com.tea.orm.thread;
 
 import java.util.List;
 
-public class BeanAdapter {
+public class BeanAdapter<T> {
 	
-	public <U> U[][] getComplex() { return null; }
+	public T[][] getComplex() { return null; }
 	
-	public void fill(Object[][] objects) {}
+	public void fill(T[][] objects) {}
 	
-	public <U> U[] getSimple() { return null; }
+	public T[] getSimple() { return null; }
 	
-	public void fill(Object[] objects) {}
+	public void fill(T[] objects) {}
 	
-	public <T> List<T> getLists() { return null; }
+	public List<T> getLists() { return null; }
 	
-	public <T> void fill(List<T> lists) {}
+	public void fill(List<T> lists) {}
 	
 	public void failure() {}
 
