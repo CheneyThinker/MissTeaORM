@@ -379,22 +379,22 @@ public abstract class TeaQuery implements Cloneable {
 		}
 	}
 	
-	public <T> T[][] executeQuery(String strSQL) {
+	public String[][] executeQuery(String strSQL) {
 		Connection con = TeaConnectionFactory.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
-		Object[][] object = null;
+		String[][] object = null;
 		try {
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			rs = stmt.executeQuery(strSQL);
 			rs.last();
-			object = new Object[rs.getRow()][];
+			object = new String[rs.getRow()][];
 			rs.first();
 			rs.beforeFirst();
 			int k=0;
 			int columnCount = rs.getMetaData().getColumnCount();
 			while(rs.next()) {
-				Object[] row = new Object[columnCount];
+				String[] row = new String[columnCount];
 				for(int i=0; i < columnCount; i++)
 					row[i] = rs.getObject(i + 1);
 				object[k] = row;
@@ -405,7 +405,7 @@ public abstract class TeaQuery implements Cloneable {
 		} finally {
 			TeaConnectionFactory.close(rs, stmt, con);
 		}
-		return (T[][]) object;
+		return object;
 	}
 	
 	public <T> List<T> executeQueryLists(String strSQL) {
