@@ -20,7 +20,7 @@ public final class JavaFileUtils {
 		JavaFieldGetSet jfgs = new JavaFieldGetSet();
 		StringBuilder builder = new StringBuilder();
 		builder.append("\t@FieldDecorate(dbType = \"").append(column.getDbType())
-		.append(" \", precision = \"").append(column.getPrecision()).append("\" ");
+		.append("\", precision = \"").append(column.getPrecision()).append("\" ");
 		if (column.getPrikey())
 			builder.append(", prikey = true ");
 		if (column.getInc())
