@@ -70,7 +70,7 @@ public final class TeaConnectionFactory {
 	}
 	
 	public static void release() {
-		if (pool.size() > 0 ) {
+		while (pool.size() > 0 ) {
 			Connection con = getConnection();
 			try {
 				if (con != null)
