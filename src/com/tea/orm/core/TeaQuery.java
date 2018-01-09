@@ -19,9 +19,9 @@ import com.tea.orm.factory.TeaConnectionFactory;
 import com.tea.orm.utils.JDBCUtils;
 import com.tea.orm.utils.ReflectUtils;
 
+@SuppressWarnings("unchecked")
 public abstract class TeaQuery implements Cloneable {
 
-	@SuppressWarnings("unchecked")
 	public <T> T executeQueryTemplate(String strSQL, Object[] params, Class<?> cls, boolean call, TeaCallBack back) {
 		Connection con = TeaConnectionFactory.getConnection();
 		PreparedStatement ps = null;
@@ -379,7 +379,7 @@ public abstract class TeaQuery implements Cloneable {
 		}
 	}
 	
-	public Object[][] executeQuery(String strSQL) {
+	public <T> T[][] executeQuery(String strSQL) {
 		Connection con = TeaConnectionFactory.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -401,14 +401,14 @@ public abstract class TeaQuery implements Cloneable {
 				k++;
 			}
 		} catch (SQLException e) {
-			return object = null;
+			return null;
 		} finally {
 			TeaConnectionFactory.close(rs, stmt, con);
 		}
-		return object;
+		return (T[][]) object;
 	}
 	
-	public List<Object> executeQueryLists(String strSQL) {
+	public <T> List<T> executeQueryLists(String strSQL) {
 		Connection con = TeaConnectionFactory.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -421,11 +421,11 @@ public abstract class TeaQuery implements Cloneable {
 				for(int i=0; i < columnCount; i++)
 					lists.add(rs.getObject(i + 1));
 		} catch (SQLException e) {
-			return lists = null;
+			return null;
 		} finally {
 			TeaConnectionFactory.close(rs, stmt, con);
 		}
-		return lists;
+		return (List<T>) lists;
 	}
 	
 	/**
